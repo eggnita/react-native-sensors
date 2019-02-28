@@ -42,7 +42,10 @@ function makeSingleton() {
   return source => source.pipe(publish(), refCount());
 }
 
-const accelerometer = createSensorObservable("accelerometer");
+let accelerometer = createSensorObservable("accelerometer");
+accelerometer.stopListeners = ()=>{
+  RNSensors.stop('Accelerometer') 
+}
 const gyroscope = createSensorObservable("gyroscope");
 const magnetometer = createSensorObservable("magnetometer");
 const barometer = createSensorObservable("barometer");
